@@ -10,7 +10,6 @@ export const Shop = () => {
 useEffect(()=>{
     const setP = async ( ) => {
         const categoryArray = await getCategoriesAndDocs();
-        console.log(categoryArray);
         dispatch(setProducts(categoryArray));
     }
     setP();

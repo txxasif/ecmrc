@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/user/user.reducer';
 import productsReducer from './reducers/categories/categories.reducers';
 import logger from 'redux-logger';
+import cartReducers from './reducers/cartReducers/cartReducers';
 
 // const tempMiddleware = (store) = (next) = (action) => {
 //   if(!action.type) {
@@ -16,12 +17,13 @@ import logger from 'redux-logger';
 export const store  = configureStore({
     reducer: {
         user: userReducer,
-        products: productsReducer
+        products: productsReducer,
+        cart: cartReducers
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(logger),
+    }).concat(logger)
 })
 
 

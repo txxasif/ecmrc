@@ -2,11 +2,16 @@ import { ReactComponent as ShoppingIcon } from '../../shopping-bag.svg';
 import './cart.scss';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.contex';
+import { useDispatch,useSelector } from 'react-redux';
+import { cartVisibleSelector } from '../../redux/reducers/cartReducers/cartSelector';
+import { setVisible } from '../../redux/reducers/cartReducers/cartReducers';
 export const CartIcon = () => {
-    const { visible ,setVisible,itemsCounts:items } = useContext(CartContext);
+    const dispatch = useDispatch();
+    const visible = useSelector(cartVisibleSelector);
+    const result = visible ? false : true;
+    const { itemsCounts:items } = useContext(CartContext);
     const changeCart = () => {
-        const result =  visible ? false :  true;
-        setVisible(result);
+        dispatch(setVisible(result));
     }
         return(
             <div  onClick={changeCart} className="cart-icon-container">
